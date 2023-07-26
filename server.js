@@ -22,6 +22,8 @@ app.get("/",(req,res)=>{
 
 // Available routes
 app.use('/api/user', require('./routes/user.js'));
+app.use('/api/worker', require('./routes/worker.js'));
+app.use('/api/admin', require('./routes/admin.js'));
 //app.use('/api/notes' , require('./routes/notes.js'));
 
 app.listen(port, () => {

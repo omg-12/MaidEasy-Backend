@@ -19,8 +19,12 @@ const WorkerSchema = new Schema({
         type : String,
         required : true
     },
-    address: {
-        type: Boolean,
+    city: {
+        type: String,
+        default: false
+    },
+    state: {
+        type: String,
         default: false
     },
     occupation : {
