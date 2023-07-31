@@ -10,6 +10,11 @@ const fetchUser = require('../middleware/fetchUser');
 
 const nodemailer = require('nodemailer');
 const Mailgen = require('mailgen');
+const HouseHelpJob = require('../models/HouseHelpJob');
+const CookJob = require('../models/CookJob');
+const DriverJob = require('../models/DriverJob');
+const OfficeBoyJob = require('../models/OfficeBoyJob');
+const BabysitterJob = require('../models/BabysitterJob');
 
 const createTransporter = async () => {
     const transporter = nodemailer.createTransport({
@@ -448,5 +453,50 @@ router.post('/finduser', fetchUser, async (req, res) => {
     }
 });
 
+// ENDPOINT 9 : to get list of all HouseHelp Bookings of User
+router.post('/getBookings', fetchUser, async (req, res) => {
+    try {
+        const HouseHelpBookings = await HouseHelpJob.find({ employerID : req.user.id});
+        const CookBookings = await CookJob.find({ employerID : req.user.id});
+        const DriverBookings = await DriverJob.find({ employerID : req.user.id});
+        const OfficeBoyBookings = await OfficeBoyJob.find({ employerID : req.user.id});
+        const BabysitterBookings = await BabysitterJob.find({ employerID : req.user.id});
+
+        let Bookings = [...HouseHelpBookings , ...CookBookings , ...DriverBookings , ...OfficeBoyBookings , ...BabysitterBookings];
+
+        res.json({
+            status: "SUCCESS",
+            BookingsList: Bookings
+        });
+    }
+    catch (error) {
+        console.error(error.message);
+        success = false;
+        return res.status(500).json({ success, error: "Internal Server Error" });
+    }
+});
+
+// ENDPOINT : To delete a Booking
+router.delete('/deleteBooking' , fetchUser , async (req , res) => {
+
+    const {Bookingid} = req.body;
+
+    try{
+        const HouseHelpBookings = await HouseHelpJob.findByIdAndDelete(Bookingid);
+        const CookBookings = await CookJob.findByIdAndDelete(Bookingid);
+        const DriverBookings = await DriverJob.findByIdAndDelete(Bookingid);
+        const OfficeBoyBookings = await OfficeBoyJob.findByIdAndDelete(Bookingid);
+        const BabysitterBookings = await BabysitterJob.findByIdAndDelete(Bookingid);
+        return res.json({
+            status : "SUCCESS",
+            message : "Booking canceled successfully!"
+        })
+    }
+    catch(error){
+        console.error(error.message);
+        success = false;
+        return res.status(500).json({ success, error: "Internal Server Error" });
+    }
+})
 
 module.exports = router;

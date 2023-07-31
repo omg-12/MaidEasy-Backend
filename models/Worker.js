@@ -31,6 +31,10 @@ const WorkerSchema = new Schema({
         type : String,
         required: true
     },
+    expectedSalary : {
+        type : Number,
+        required : true
+    },
     verified : {
         type: Boolean,
         default : false
