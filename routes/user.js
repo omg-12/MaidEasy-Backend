@@ -20,8 +20,8 @@ const createTransporter = async () => {
     const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-            user: "inotebookcompany@gmail.com",
-            pass: "gwyyplprzvjcwcek"
+            user: process.env.CYCLIC_EMAIL,
+            pass: process.env.CYCLIC_PASS
         }
     });
     return transporter;
@@ -131,7 +131,7 @@ const sendOTPVerificationMail = async ({ _id, name, email }, res) => {
         var mailHtml = MailGenerator.generate(emailcontent);
 
         const mailOptions = {
-            from: "inotebookcompany@gmail.com",
+            from: process.env.CYCLIC_EMAIL,
             to: email,
             subject: "Verify Your Email",
             // We can directly put html code here instead of using Mailgen library

@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 // const mongoURI= 'mongodb://localhost:27017/inotebook'
 
 // URL for using Mongo db Atlas
-const mongoURI= "mongodb+srv://omgolhani3604:bkR9G9Ej4zEHtcIg@cluster0.nkgjagq.mongodb.net/MaidEasy"
+const mongoURI= process.env.DB_URL
 
 // connecting to monogodb
 const connectToMongo = ()=>{
