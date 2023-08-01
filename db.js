@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
-require('dotenv').config()
+const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, ".env") });
 
 // URL for using Mongo db Compass
 // const mongoURI= 'mongodb://localhost:27017/inotebook'
 
 // URL for using Mongo db Atlas
-const mongoURI= process.env.DB_URL
+const mongoURI= process.env.CYCLIC_DB_URL
 
 // connecting to monogodb
 const connectToMongo = ()=>{
