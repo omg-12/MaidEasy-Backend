@@ -4,7 +4,7 @@ var cors = require('cors');
 
 connectToMongo();       // function for establishing connectivity to MongoDB
 const app = express() // express object
-const port = 5000 || process.env.port;
+const port = 5000 || process.env.PORT;
 app.set("view engine","ejs");
 
 //A middleWare to  use req.body
@@ -24,7 +24,6 @@ app.get("/",(req,res)=>{
 app.use('/api/user', require('./routes/user.js'));
 app.use('/api/worker', require('./routes/worker.js'));
 app.use('/api/admin', require('./routes/admin.js'));
-//app.use('/api/notes' , require('./routes/notes.js'));
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
