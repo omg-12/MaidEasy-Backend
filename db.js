@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+require('dotenv').config()
 
 // URL for using Mongo db Compass
 // const mongoURI= 'mongodb://localhost:27017/inotebook'
