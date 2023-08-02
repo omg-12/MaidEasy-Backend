@@ -263,7 +263,7 @@ router.post('/BookHouseHelp', fetchUser, async (req, res) => {
                 message: "This Employee is not available."
             })
         } else {
-            const newjobdetails = HouseHelpJob.create({
+            const newjobdetails = await HouseHelpJob.create({
                 workerID: workerID,
                 employerID: req.user.id,
                 name: name,
@@ -308,7 +308,7 @@ router.post('/BookBabysitter', fetchUser, async (req, res) => {
                 message: "This Employee is not available."
             })
         } else {
-            const newjobdetails = BabysitterJob.create({
+            const newjobdetails = await BabysitterJob.create({
                 workerID: workerID,
                 employerID: req.user.id,
                 name: name,
@@ -354,7 +354,7 @@ router.post('/BookCook', fetchUser, async (req, res) => {
                 message: "This Employee is not available."
             })
         } else {
-            const newjobdetails = CookJob.create({
+            const newjobdetails = await CookJob.create({
                 workerID: workerID,
                 employerID: req.user.id,
                 name: name,
@@ -400,7 +400,7 @@ router.post('/BookDriver', fetchUser, async (req, res) => {
                 message: "This Employee is not available."
             })
         } else {
-            const newjobdetails = DriverJob.create({
+            const newjobdetails = await DriverJob.create({
                 workerID: workerID,
                 employerID: req.user.id,
                 name: name,
@@ -445,7 +445,7 @@ router.post('/BookOfficeBoy', fetchUser, async (req, res) => {
                 message: "This Employee is not available."
             })
         } else {
-            const newjobdetails = OfficeBoyJob.create({
+            const newjobdetails = await OfficeBoyJob.create({
                 workerID: workerID,
                 employerID: req.user.id,
                 name: name,
